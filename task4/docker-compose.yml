@@ -1,0 +1,18 @@
+services:
+  back-end:
+    build:
+      context: ./back-end  # Chemin vers le dossier back-end
+      dockerfile: Dockerfile  # Nom du Dockerfile
+    image: softy-pinko-back-end:task4  # Nom de l'image
+    ports:
+      - "5252:5252"  # Mappage ports (host:container)
+
+  front-end:
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+    image: softy-pinko-front-end:task4
+    ports:
+      - "9000:9000"
+    depends_on:  # Dépendance (le back-end démarre en premier)
+      - back-end
